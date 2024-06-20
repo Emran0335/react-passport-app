@@ -4,9 +4,13 @@ const TaskSchema = new mongoose.Schema(
   {
     title: {
       type: mongoose.Schema.Types.String,
+      required: true,
+      unique: true,
     },
     description: {
       type: mongoose.Schema.Types.String,
+      required: true,
+      unique: true,
     },
     date: {
       type: mongoose.Schema.Types.String,
