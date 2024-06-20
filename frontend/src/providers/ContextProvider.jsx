@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { GlobalProvider } from "../context/globalProvider";
 
 const ContextProvider = ({ children }) => {
   const [isReady, setIsReady] = useState(false);

@@ -12,7 +12,10 @@ const initialState = {
 export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
   const response = await fetch("http://localhost:3000/api/tasks");
   const tasks = await response.json();
-  return tasks;
+  const sortedTasks = tasks.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+  return sortedTasks;
 });
 
 const tasksSlice = createSlice({

@@ -10,7 +10,6 @@ const Button = ({
   border,
   borderRad,
   background,
-  click,
 }) => {
   return (
     <button
@@ -23,7 +22,6 @@ const Button = ({
         border: border,
       }}
       type={type}
-      onClick={click}
     >
       {icon && icon}
       {name}

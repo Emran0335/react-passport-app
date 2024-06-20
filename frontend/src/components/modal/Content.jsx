@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Button from "../Button";
 import { add } from "../../utils/icons";
-import axios from "axios";
 
-const Content = () => {
+const Content = ({ modal }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [date, setDate] = useState("");
@@ -59,8 +58,8 @@ const Content = () => {
         setTitle("");
         setDescription("");
         setDate("");
-        setCompleted(false);
-        setImportant(false);
+        setCompleted("");
+        setImportant("");
       }
     } catch (error) {
       console.log(error);

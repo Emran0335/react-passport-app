@@ -9,7 +9,9 @@ const Tasks = () => {
   const [isEditing, setIsEditing] = useState(false);
   return (
     <div className="relative p-[2rem] w-full bg-green-300 border-2 border-cyan-300 rounded-2xl h-full overflow-y-auto scrollbar-webkit">
-      {modal && <Modal modal={setModal} content={<Content />} />}
+      {modal && (
+        <Modal modal={setModal} content={<Content modal={setModal} />} />
+      )}
       {isEditing && <Modal modal={setIsEditing} content={<Content />} />}
       <h1 className="font-bold relative after:absolute after:bottom-[-0.5rem] after:left-0 after:w-[3rem] after:h-[0.2rem] after:bg-green-500 after:rounded-[0.5rem]">
         TaskHeader
