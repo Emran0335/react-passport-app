@@ -1,4 +1,3 @@
-
 import Sidebar from "./components/Sidebar";
 import ContextProvider from "./providers/ContextProvider";
 import TasksContainer from "./components/TasksContainer";

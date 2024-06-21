@@ -1,23 +1,47 @@
 import React from "react";
-import { arrowLeft } from "../utils/icons.jsx";
+import { arrowLeft, bars, logout } from "../utils/icons.jsx";
 import { menu } from "../utils/menu.jsx";
 import Button from "./Button.jsx";
 import img from "../assets/react.svg";
+import { useGlobalState } from "../context/globalProvider.jsx";
 
 const Sidebar = () => {
+  const { theme, collapse, collapseMenu } = useGlobalState();
   return (
-    <nav className="relative w-[250px] bg-green-300 border-2 border-cyan-300 rounded-2xl flex flex-col justify-between text-gray-900 transition-all">
-      <button className="hidden py-[0.8rem] px-[0.9rem] absolute right-[-67px] top-[1.8rem] rounded-tr-2xl rounded-br-2xl border-t-gray-900 border-r-gray-900 border-b-gray-900 bg-gray-950">
-        {arrowLeft}
+    <nav
+      className="relative rounded-2xl flex flex-col justify-between transition-all"
+      style={{
+        width: `${theme.sidebarWidth}`,
+        backgroundColor: `${theme.colorBg2}`,
+        borderColor: `${theme.borderColor2}`,
+        color: `${theme.colorGrey2}`,
+      }}
+    >
+      <button
+        className="hidden py-[0.8rem] px-[0.9rem] absolute right-[-67px] top-[1.8rem] rounded-tr-2xl rounded-br-2xl"
+        style={{
+          borderTop: `${theme.borderColor2}`,
+          borderRight: `${theme.borderColor2}`,
+          borderBottom: `${theme.borderColor2}`,
+        }}
+      >
+        {collapse ? bars : arrowLeft}
       </button>
-      <div className="m-[1.5rem] py-4 px-3 relative rounded-2xl cursor-pointer font-medium text-gray-900 flex items-center">
-        <div className="absolute top-0 left-0 w-full h-full backdrop-filter z-0 bg-gray-400 transition-all rounded-2xl border-cyan-500 opacity-20"></div>
-        <div className="flex-shrink-0 inline-block overflow-hidden transition-all rounded-full w-[40%] h-[70%]">
-          <img
-            src={img}
-            alt="profile image"
-            className="rounded-full transition-all"
-          />
+      <div
+        className="m-[1.5rem] py-4 px-3 relative rounded-2xl cursor-pointer font-medium flex items-center"
+        style={{
+          color: `${theme.colorGrey0}`,
+        }}
+      >
+        <div
+          className="absolute top-0 left-0 w-full h-full backdrop-filter z-0 transition-all rounded-2xl opacity-20 hover:opacity-100 hover:border-gray-900 backdrop-blur-md"
+          style={{
+            background: `${theme.colorBg3}`,
+            borderColor: `${theme.borderColor2}`,
+          }}
+        ></div>
+        <div className="flex-shrink-0 inline-block overflow-hidden transition-all rounded-full w-[40%] h-[70%] hover:scale-[0.9]">
+          <img src={img} alt="profile image" className="rounded-full" />
         </div>
         <div className="w-full h-full absolute z-20 top-0"></div>
         <h1 className="capitalize text-[1.2rem] flex flex-col leading-6 relative z-[1]">
@@ -28,7 +52,7 @@ const Sidebar = () => {
         {menu.map((item) => {
           const link = item.link;
           return (
-            <li className="flex items-center gap-3 text-gray-900" key={item.id}>
+            <li className="flex items-center gap-3 text-gray-200" key={item.id}>
               {item.icon}
               <a href={link} className="font-medium">
                 {item.title}
@@ -38,7 +62,15 @@ const Sidebar = () => {
         })}
       </ul>
       <div className="sign-out relative m-[1.5rem]">
-        <Button />
+        <Button
+          name={"Sign Out"}
+          type={"submit"}
+          padding={"0.4rem 0.8rem"}
+          borderRad={"0.8rem"}
+          fw={"500"}
+          fs={"1.2rem"}
+          icon={logout}
+        />
       </div>
     </nav>
   );

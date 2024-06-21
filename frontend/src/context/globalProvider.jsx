@@ -23,6 +23,7 @@ export const GlobalProvider = ({ children }) => {
     id: "",
   });
   const { tasks } = useSelector((state) => state.tasks);
+  console.log(tasks);
   const dispatch = useDispatch();
   const theme = themes[0];
 
@@ -40,11 +41,36 @@ export const GlobalProvider = ({ children }) => {
   const collapseMenu = () => {
     setCollapse(!collapse);
   };
+
   useEffect(() => {
     dispatch(fetchTasks());
   }, [dispatch]);
+
+  const completedTasks = tasks.filter((task) => task.isCompleted);
+  const importantTasks = tasks.filter((task) => task.isImportant);
+  const incompleteTasks = tasks.filter((task) => !task.isCompleted);
+
   return (
-    <GlobalContext.Provider value={{ theme }}>
+    <GlobalContext.Provider
+      value={{
+        theme,
+        tasks,
+        isLoading,
+        modal,
+        openModal,
+        setModal,
+        closeModal,
+        collapse,
+        collapseMenu,
+        isEditing,
+        setIsEditing,
+        taskToEdit,
+        handleEdit,
+        completedTasks,
+        importantTasks,
+        incompleteTasks,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );
