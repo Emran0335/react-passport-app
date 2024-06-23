@@ -11,8 +11,17 @@ const {
 } = require("../utils/validationSchemas");
 const { hashPassword } = require("../utils/helper");
 
-router.get("/api/user", (req, res) => {
-  res.send({ message: "I am from users router" });
+router.get("/api/user/:userId", async (req, res) => {
+  const {userId} = req.params.userId;
+  try {
+    const user = await User.findById(userId);
+    if (!user) {
+      return res.sendStatus(401);
+    }
+    return res.status(200).json(user);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.post(

@@ -34,7 +34,7 @@ const Tasks = ({ taskHeader, tasks }) => {
       <div className={`mt-8 mb-8 ${"gridcss"}`}>
         {tasks.map((task) => (
           <TaskItem
-            key={task.id}
+            key={task._id}
             title={task.title}
             description={task.description}
             date={task.date}

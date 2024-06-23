@@ -5,8 +5,9 @@ import Button from "./Button.jsx";
 import img from "../assets/react.svg";
 import { useGlobalState } from "../context/globalProvider.jsx";
 
-const Sidebar = () => {
-  const { theme, collapse, collapseMenu } = useGlobalState();
+const Sidebar = ({ setUser }) => {
+  const { tasks, theme, collapse, collapseMenu } = useGlobalState();
+  console.log(tasks);
   return (
     <nav
       className="relative rounded-2xl flex flex-col justify-between transition-all"
@@ -32,6 +33,7 @@ const Sidebar = () => {
         style={{
           color: `${theme.colorGrey0}`,
         }}
+        onClick={() => setUser(tasks._id)}
       >
         <div
           className="absolute top-0 left-0 w-full h-full backdrop-filter z-0 transition-all rounded-2xl opacity-20 hover:opacity-100 hover:border-gray-900 backdrop-blur-md"

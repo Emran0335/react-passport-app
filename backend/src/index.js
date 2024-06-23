@@ -26,7 +26,7 @@ app.use(cookieParser("helloworld"));
 app.use(cors());
 app.use(
   session({
-    secret: "anson the dev",
+    secret: "Emran Hossain",
     saveUninitialized: false, // false is recommended!
     resave: false,
     cookie: {
@@ -45,7 +45,7 @@ app.use(routes);
 
 // serialisedUser function will be called for the first time
 app.post("/api/auth", passport.authenticate("local"), (request, response) => {
-  response.sendStatus(200);
+  return response.sendStatus(200);
 });
 
 // deserializedUser function will be called from saved session data from the request object
